@@ -1,8 +1,10 @@
+import { HeaderUser } from "./components/header/user";
+
 export function App() {
 
   return (
-    <div>
-      React App
+    <div className="w-screen h-screen p-2">
+      <HeaderUser/>
     </div>
   )
 }
