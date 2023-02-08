@@ -7,7 +7,7 @@ interface AttributesProps {
     titulo: string;
 }
 
-export function USelectPesquisaSolo(){
+export function ASelectPesquisaSolo(){
     const { id } = useParams()
     const [ attributes, setAttributes ] = useState<AttributesProps>({})
 
