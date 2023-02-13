@@ -21,13 +21,22 @@ import { ASelectCampusSolo } from './views/admin/select_solo/campus'
 import { ASelectCursoSolo } from './views/admin/select_solo/curso'
 import { ASelectDiscenteSolo } from './views/admin/select_solo/discente'
 import { ASelectDocenteSolo } from './views/admin/select_solo/docente'
+import { ASelectMatriculaSolo } from './views/admin/select_solo/matricula'
 import { ASelectPesquisaSolo } from './views/admin/select_solo/pesquisa'
 
 import { ASelectCampusAll } from './views/admin/select_all/campus'
 import { ASelectCursoAll } from './views/admin/select_all/curso'
 import { ASelectDiscenteAll } from './views/admin/select_all/discente'
 import { ASelectDocenteAll } from './views/admin/select_all/docente'
+import { ASelectMatriculaAll } from './views/admin/select_all/matricula'
 import { ASelectPesquisaAll } from './views/admin/select_all/pesquisa'
+
+import { ACreateCampus } from './views/admin/create/campus'
+import { ACreateCurso } from './views/admin/create/curso'
+import { ACreateDiscente } from './views/admin/create/discente'
+import { ACreateDocente } from './views/admin/create/docente'
+import { ACreateMatricula } from './views/admin/create/matricula'
+import { ACreatePesquisa } from './views/admin/create/pesquisa'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -51,13 +60,23 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path='/admin/cursos' element={<ASelectCursoAll/>}/>
       <Route path='/admin/discentes' element={<ASelectDiscenteAll/>}/>
       <Route path='/admin/docentes' element={<ASelectDocenteAll/>}/>
+      <Route path='/admin/matriculas' element={<ASelectMatriculaAll/>}/>
       <Route path='/admin/pesquisas' element={<ASelectPesquisaAll/>}/>
 
       <Route path='/admin/campus/:id' element={<ASelectCampusSolo/>}/>
       <Route path='/admin/curso/:id' element={<ASelectCursoSolo/>}/>
       <Route path='/admin/discente/:id' element={<ASelectDiscenteSolo/>}/>
       <Route path='/admin/docente/:id' element={<ASelectDocenteSolo/>}/>
+      <Route path='/admin/matricula/:id' element={<ASelectMatriculaSolo/>}/>
       <Route path='/admin/pesquisa/:id' element={<ASelectPesquisaSolo/>}/>
+
+      <Route path='/admin/campus/create' element={<ACreateCampus/>}/>
+      <Route path='/admin/cursos/create' element={<ACreateCurso/>}/>
+      <Route path='/admin/discentes/create' element={<ACreateDiscente/>}/>
+      <Route path='/admin/docentes/create' element={<ACreateDocente/>}/>
+      <Route path='/admin/docentes/create' element={<ACreateMatricula/>}/>
+      <Route path='/admin/pesquisas/create' element={<ACreatePesquisa/>}/>
+
     </Routes>
     </BrowserRouter>
   </React.StrictMode>,
