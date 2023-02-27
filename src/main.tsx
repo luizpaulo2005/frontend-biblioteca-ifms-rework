@@ -70,13 +70,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path='/admin/matricula/:id' element={<ASelectMatriculaSolo/>}/>
       <Route path='/admin/pesquisa/:id' element={<ASelectPesquisaSolo/>}/>
 
-      <Route path='/admin/campus/create' element={<ACreateCampus/>}/>
-      <Route path='/admin/curso/create' element={<ACreateCurso/>}/>
-      <Route path='/admin/discente/create' element={<ACreateDiscente/>}/>
-      <Route path='/admin/docente/create' element={<ACreateDocente/>}/>
-      <Route path='/admin/matricula/create' element={<ACreateMatricula/>}/>
-      <Route path='/admin/pesquisa/create' element={<ACreatePesquisa/>}/>
-
     </Routes>
     </BrowserRouter>
   </React.StrictMode>,
