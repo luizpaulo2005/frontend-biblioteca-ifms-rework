@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { api } from "../../../utils/axios"
+import { Helmet } from "react-helmet";
 
-interface AttributesProps {
-    id: string;
-    titulo: string;
-}
 
 export function USelectPesquisaSolo(){
     const { id } = useParams()
-    const [ attributes, setAttributes ] = useState<AttributesProps>({})
+    const [ attributes, setAttributes ] = useState("")
 
     useEffect(()=>{
         api.get(`/pesquisa/${id}`).then(res=>{
@@ -20,6 +17,9 @@ export function USelectPesquisaSolo(){
 
     return(
         <div>
+            <Helmet>
+                <title>{attributes.titulo}</title>
+            </Helmet>
             {
 
                     <div key={attributes.id}>{attributes.titulo}</div>

@@ -1,25 +1,23 @@
-import { FormEvent, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../../utils/axios";
 
-export function FormCreateCampus() {
+export function FormCreateDiscente() {
+  const [matriculas, setMatriculas] = useState([]);
+
   const [nome, setNome] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [estado, setEstado] = useState("");
+  const [matricula_id, setMatriculaID] = useState("");
   const [email, setEmail] = useState("");
+  const [data_nascimento, setData_nascimento] = useState("");
+  const [cpf, setCpf] = useState("");
 
   const handleInputNomeChange = (e) => {
     const { value } = e.target;
     setNome(value);
   };
 
-  const handleInputCidadeChange = (e) => {
+  const handleInputMatriculaChange = (e) => {
     const { value } = e.target;
-    setCidade(value);
-  };
-
-  const handleInputEstadoChange = (e) => {
-    const { value } = e.target;
-    setEstado(value);
+    setMatriculaID(value);
   };
 
   const handleInputEmailChange = (e) => {
@@ -27,20 +25,43 @@ export function FormCreateCampus() {
     setEmail(value);
   };
 
-  const data = { nome, cidade, estado, email };
+  const handleInputDataChange = (e) => {
+    const { value } = e.target;
+    setData_nascimento(value);
+  };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleInputCPFChange = (e) => {
+    const { value } = e.target;
+    setCpf(value);
+  };
+
+  const data = { nome, matricula_id, email, data_nascimento, cpf };
+  console.log(data);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     await api
-      .post("/campus", data)
+      .post("discente", data)
       .then((res) => {
         console.log(res.data);
-        window.location.reload()
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    api
+      .get("/matriculas")
+      .then((res) => {
+        setMatriculas(res.data);
+        console.log("Dados de matrículas obtidos com sucesso!");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <form>
@@ -63,33 +84,17 @@ export function FormCreateCampus() {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="cidade"
+            htmlFor="matricula"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Cidade
+            Matricula
           </label>
           <input
             type="text"
-            id="cidade"
-            value={cidade}
-            onChange={handleInputCidadeChange}
-            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            required
-          />
-        </div>
-        <div className="mb-6">
-          <label
-            htmlFor="estado"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-          >
-            Estado
-          </label>
-          <input
-            type="text"
-            id="estado"
-            value={estado}
-            onChange={handleInputEstadoChange}
-            list="estados"
+            id="matricula"
+            value={matricula_id}
+            list="matriculas"
+            onChange={handleInputMatriculaChange}
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             required
           />
@@ -99,7 +104,7 @@ export function FormCreateCampus() {
             htmlFor="email"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            E-mail
+            Email
           </label>
           <input
             type="email"
@@ -110,40 +115,50 @@ export function FormCreateCampus() {
             required
           />
         </div>
-
-        <datalist id="estados">
-          <option value="AC">Acre</option>
-          <option value="AL">Alagoas</option>
-          <option value="AP">Amapá</option>
-          <option value="AM">Amazonas</option>
-          <option value="BA">Bahia</option>
-          <option value="CE">Ceará</option>
-          <option value="DF">Distrito Federal</option>
-          <option value="ES">Espírito Santo</option>
-          <option value="GO">Goiás</option>
-          <option value="MA">Maranhão</option>
-          <option value="MT">Mato Grosso</option>
-          <option value="MS">Mato Grosso do Sul</option>
-          <option value="MG">Minas Gerais</option>
-          <option value="PA">Pará</option>
-          <option value="PB">Paraíba</option>
-          <option value="PR">Paraná</option>
-          <option value="PE">Pernambuco</option>
-          <option value="PI">Piauí</option>
-          <option value="RJ">Rio de Janeiro</option>
-          <option value="RN">Rio Grande do Norte</option>
-          <option value="RS">Rio Grande do Sul</option>
-          <option value="RO">Rondônia</option>
-          <option value="RR">Roraima</option>
-          <option value="SC">Santa Catarina</option>
-          <option value="SP">São Paulo</option>
-          <option value="SE">Sergipe</option>
-          <option value="TO">Tocantins</option>
+        <div className="mb-6">
+          <label
+            htmlFor="data_nascimento"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            Data de Nascimento
+          </label>
+          <input
+            type="date"
+            id="data_nascimento"
+            value={data_nascimento}
+            onChange={handleInputDataChange}
+            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            required
+          />
+        </div>
+        <div className="mb-6">
+          <label
+            htmlFor="cpf"
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >
+            CPF
+          </label>
+          <input
+            type="text"
+            id="cpf"
+            value={cpf}
+            onChange={handleInputCPFChange}
+            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            required
+          />
+        </div>
+        <datalist id="matriculas">
+          {matriculas.map(({ id }) => {
+            return (
+              <option value={id} key={id}>
+                {id}
+              </option>
+            );
+          })}
         </datalist>
-
         <button
           onClick={handleSubmit}
-          className="p-2 rounded-md bg-blue-600 hover:bg-blue-500 text-white transition-colors dark:bg-gray-700 dark:hover:bg-gray-500"
+          className="p-2 rounded-md bg-blue-600 text-white dark:bg-gray-700"
         >
           Cadastrar
         </button>

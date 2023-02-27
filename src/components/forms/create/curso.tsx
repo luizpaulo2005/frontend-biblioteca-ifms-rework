@@ -1,46 +1,60 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { api } from "../../../utils/axios";
 
-export function FormCreateCampus() {
+export function FormCreateCurso() {
+  const [campus, setCampus] = useState([]);
+
   const [nome, setNome] = useState("");
-  const [cidade, setCidade] = useState("");
-  const [estado, setEstado] = useState("");
-  const [email, setEmail] = useState("");
+  const [grade, setGrade] = useState<number>();
+  const [duracao, setDuracao] = useState("");
+  const [campus_id, setCampusId] = useState("");
 
   const handleInputNomeChange = (e) => {
     const { value } = e.target;
     setNome(value);
   };
 
-  const handleInputCidadeChange = (e) => {
+  const handleInputGradeChange = (e) => {
     const { value } = e.target;
-    setCidade(value);
+    setGrade(Math.floor(value));
   };
 
-  const handleInputEstadoChange = (e) => {
+  const handleInputDuracaoChange = (e) => {
     const { value } = e.target;
-    setEstado(value);
+    setDuracao(value);
   };
 
-  const handleInputEmailChange = (e) => {
+  const handleInputCampusChange = (e) => {
     const { value } = e.target;
-    setEmail(value);
+    setCampusId(value);
   };
 
-  const data = { nome, cidade, estado, email };
+  const data = { nome, grade, duracao, campus_id };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     await api
-      .post("/campus", data)
+      .post("/curso", data)
       .then((res) => {
         console.log(res.data);
-        window.location.reload()
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    api
+      .get("/campus")
+      .then((res) => {
+        setCampus(res.data);
+        console.log("Dados de campus obtidos com sucesso");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <form>
@@ -63,84 +77,62 @@ export function FormCreateCampus() {
         </div>
         <div className="mb-6">
           <label
-            htmlFor="cidade"
+            htmlFor="grade"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Cidade
+            Grade
           </label>
           <input
-            type="text"
-            id="cidade"
-            value={cidade}
-            onChange={handleInputCidadeChange}
+            type="number"
+            id="grade"
+            value={grade}
+            onChange={handleInputGradeChange}
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             required
           />
         </div>
         <div className="mb-6">
           <label
-            htmlFor="estado"
+            htmlFor="duracao"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            Estado
+            Duração
           </label>
           <input
             type="text"
-            id="estado"
-            value={estado}
-            onChange={handleInputEstadoChange}
-            list="estados"
+            id="duracao"
+            value={duracao}
+            onChange={handleInputDuracaoChange}
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             required
           />
         </div>
         <div className="mb-6">
           <label
-            htmlFor="email"
+            htmlFor="campus_id"
             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-            E-mail
+            Campus
           </label>
           <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={handleInputEmailChange}
+            type="text"
+            id="campus_id"
+            list="campus_list"
+            value={campus_id}
+            onChange={handleInputCampusChange}
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
             required
           />
         </div>
-
-        <datalist id="estados">
-          <option value="AC">Acre</option>
-          <option value="AL">Alagoas</option>
-          <option value="AP">Amapá</option>
-          <option value="AM">Amazonas</option>
-          <option value="BA">Bahia</option>
-          <option value="CE">Ceará</option>
-          <option value="DF">Distrito Federal</option>
-          <option value="ES">Espírito Santo</option>
-          <option value="GO">Goiás</option>
-          <option value="MA">Maranhão</option>
-          <option value="MT">Mato Grosso</option>
-          <option value="MS">Mato Grosso do Sul</option>
-          <option value="MG">Minas Gerais</option>
-          <option value="PA">Pará</option>
-          <option value="PB">Paraíba</option>
-          <option value="PR">Paraná</option>
-          <option value="PE">Pernambuco</option>
-          <option value="PI">Piauí</option>
-          <option value="RJ">Rio de Janeiro</option>
-          <option value="RN">Rio Grande do Norte</option>
-          <option value="RS">Rio Grande do Sul</option>
-          <option value="RO">Rondônia</option>
-          <option value="RR">Roraima</option>
-          <option value="SC">Santa Catarina</option>
-          <option value="SP">São Paulo</option>
-          <option value="SE">Sergipe</option>
-          <option value="TO">Tocantins</option>
+        <datalist id="campus_list">
+          {campus.map(({ id, nome }) => {
+            return (
+              <option key={id} value={id}>
+                {nome}
+              </option>
+            );
+          })}
         </datalist>
-
         <button
           onClick={handleSubmit}
           className="p-2 rounded-md bg-blue-600 hover:bg-blue-500 text-white transition-colors dark:bg-gray-700 dark:hover:bg-gray-500"

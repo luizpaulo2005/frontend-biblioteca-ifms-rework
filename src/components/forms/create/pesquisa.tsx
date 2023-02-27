@@ -1,4 +1,4 @@
-export function ACreateDocente(){
+export function FormCreatePesquisa(){
     return(
         <div></div>
     )

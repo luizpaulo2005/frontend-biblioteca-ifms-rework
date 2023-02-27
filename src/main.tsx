@@ -31,13 +31,6 @@ import { ASelectDocenteAll } from './views/admin/select_all/docente'
 import { ASelectMatriculaAll } from './views/admin/select_all/matricula'
 import { ASelectPesquisaAll } from './views/admin/select_all/pesquisa'
 
-import { ACreateCampus } from './views/admin/create/campus'
-import { ACreateCurso } from './views/admin/create/curso'
-import { ACreateDiscente } from './views/admin/create/discente'
-import { ACreateDocente } from './views/admin/create/docente'
-import { ACreateMatricula } from './views/admin/create/matricula'
-import { ACreatePesquisa } from './views/admin/create/pesquisa'
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
