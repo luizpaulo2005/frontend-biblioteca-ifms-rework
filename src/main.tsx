@@ -71,11 +71,11 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path='/admin/pesquisa/:id' element={<ASelectPesquisaSolo/>}/>
 
       <Route path='/admin/campus/create' element={<ACreateCampus/>}/>
-      <Route path='/admin/cursos/create' element={<ACreateCurso/>}/>
-      <Route path='/admin/discentes/create' element={<ACreateDiscente/>}/>
-      <Route path='/admin/docentes/create' element={<ACreateDocente/>}/>
-      <Route path='/admin/docentes/create' element={<ACreateMatricula/>}/>
-      <Route path='/admin/pesquisas/create' element={<ACreatePesquisa/>}/>
+      <Route path='/admin/curso/create' element={<ACreateCurso/>}/>
+      <Route path='/admin/discente/create' element={<ACreateDiscente/>}/>
+      <Route path='/admin/docente/create' element={<ACreateDocente/>}/>
+      <Route path='/admin/matricula/create' element={<ACreateMatricula/>}/>
+      <Route path='/admin/pesquisa/create' element={<ACreatePesquisa/>}/>
 
     </Routes>
     </BrowserRouter>

@@ -13,9 +13,9 @@ export function App() {
     });
   }, []);
   return (
-    <div className="w-screen h-screen p-2">
+    <div className="w-screen min-h-screen p-2">
       <HeaderUser />
-      <div className="border mt-4 w-full h-auto p-3">
+      <div className="border mt-4 w-full h-auto p-3 flex flex-wrap gap-2 sm:justify-center md:justify-start">
         {pesquisas ?
           pesquisas.map(({ id, titulo }) => {
             return <CardIndex id={id} titulo={titulo} />;
