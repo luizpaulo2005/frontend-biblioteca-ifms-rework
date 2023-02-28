@@ -5,6 +5,7 @@ import { FormCreateDiscente } from "../../../components/forms/create/discente";
 import { Plus, X } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { api } from "../../../utils/axios";
+import dayjs from "dayjs";
 
 export function ASelectDiscenteAll() {
   const [attributes, setAttributes] = useState([]);
@@ -51,30 +52,31 @@ export function ASelectDiscenteAll() {
             </Dialog.Portal>
           </Dialog.Root>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>E-mail</th>
-              <th>Data de Nascimento</th>
-            </tr>
-          </thead>
-          <tbody>
-            {attributes.length > 0 ? (
-              attributes.map(({ id, nome, email, data_nascimento }) => {
+
+        {attributes.length > 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Data de Nascimento</th>
+              </tr>
+            </thead>
+            <tbody>
+              {attributes.map(({ id, nome, email, data_nascimento }) => {
                 return (
                   <tr key={id}>
                     <td>{nome}</td>
                     <td>{email}</td>
-                    <td>{data_nascimento}</td>
+                    <td>{dayjs(data_nascimento).format("DD/MM/YYYY")}</td>
                   </tr>
                 );
-              })
-            ) : (
-              <div>Nada</div>
-            )}
-          </tbody>
-        </table>
+              })}
+            </tbody>
+          </table>
+        ) : (
+          <div>Nada</div>
+        )}
       </div>
     </div>
   );
