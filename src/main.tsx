@@ -30,6 +30,7 @@ import { ASelectDiscenteAll } from './views/admin/select_all/discente'
 import { ASelectDocenteAll } from './views/admin/select_all/docente'
 import { ASelectMatriculaAll } from './views/admin/select_all/matricula'
 import { ASelectPesquisaAll } from './views/admin/select_all/pesquisa'
+import { LoginScreen } from './views/admin/auth/login'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
@@ -62,6 +63,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path='/admin/docente/:id' element={<ASelectDocenteSolo/>}/>
       <Route path='/admin/matricula/:id' element={<ASelectMatriculaSolo/>}/>
       <Route path='/admin/pesquisa/:id' element={<ASelectPesquisaSolo/>}/>
+
+      <Route path='/login' element={<LoginScreen/>}/>
 
     </Routes>
     </BrowserRouter>
