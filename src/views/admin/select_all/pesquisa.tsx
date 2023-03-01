@@ -10,6 +10,18 @@ import dayjs from "dayjs";
 export function ASelectPesquisaAll() {
   const [attributes, setAttributes] = useState([]);
 
+  const handleDelete = async (e) => {
+    const { id } = e.target;
+    await api
+      .delete(`/campus/${id}`)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     api
       .get("/pesquisas/all")
@@ -84,7 +96,10 @@ export function ASelectPesquisaAll() {
                         <button className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600">
                           Alterar
                         </button>
-                        <button className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600">
+                        <button
+                          onClick={handleDelete}
+                          className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600"
+                        >
                           Excluir
                         </button>
                       </td>

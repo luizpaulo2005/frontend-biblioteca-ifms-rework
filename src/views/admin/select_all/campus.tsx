@@ -9,6 +9,18 @@ import { Helmet } from "react-helmet";
 export function ASelectCampusAll() {
   const [attributes, setAttributes] = useState([]);
 
+  const handleDelete = async (e) => {
+    const { id } = e.target;
+    await api
+      .delete(`/campus/${id}`)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     api
       .get("/campus/all")
@@ -57,9 +69,10 @@ export function ASelectCampusAll() {
           <table className="w-full">
             <thead className="bg-green-500 text-white dark:bg-green-800">
               <tr>
-                <th className="">Nome</th>
-                <th className="">Cidade</th>
-                <th className="">Estado</th>
+                <th>Nome</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -68,6 +81,17 @@ export function ASelectCampusAll() {
                   <td className="border">{nome}</td>
                   <td className="border">{cidade}</td>
                   <td className="border">{estado}</td>
+                  <td className="flex gap-2 justify-center text-white">
+                    <button
+                      onClick={handleDelete}
+                      className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600"
+                    >
+                      Alterar
+                    </button>
+                    <button className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600">
+                      Excluir
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

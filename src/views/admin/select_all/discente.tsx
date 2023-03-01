@@ -10,6 +10,18 @@ import dayjs from "dayjs";
 export function ASelectDiscenteAll() {
   const [attributes, setAttributes] = useState([]);
 
+  const handleDelete = async (e) => {
+    const { id } = e.target;
+    await api
+      .delete(`/campus/${id}`)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     api
       .get("/discentes/all")
@@ -60,6 +72,7 @@ export function ASelectDiscenteAll() {
                 <th>Nome</th>
                 <th>E-mail</th>
                 <th>Data de Nascimento</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -69,6 +82,17 @@ export function ASelectDiscenteAll() {
                     <td>{nome}</td>
                     <td>{email}</td>
                     <td>{dayjs(data_nascimento).format("DD/MM/YYYY")}</td>
+                    <td className="flex gap-2 justify-center text-white">
+                      <button
+                        onClick={handleDelete}
+                        className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600"
+                      >
+                        Alterar
+                      </button>
+                      <button className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600">
+                        Excluir
+                      </button>
+                    </td>
                   </tr>
                 );
               })}

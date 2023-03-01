@@ -10,6 +10,18 @@ import dayjs from "dayjs";
 export function ASelectDocenteAll() {
   const [attributes, setAttributes] = useState([]);
 
+  const handleDelete = async (e) => {
+    const { id } = e.target;
+    await api
+      .delete(`/campus/${id}`)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     api
       .get("/docentes/all")
@@ -51,32 +63,46 @@ export function ASelectDocenteAll() {
             </Dialog.Portal>
           </Dialog.Root>
         </div>
-        {attributes.length > 0 ?
-        <table>
+        {attributes.length > 0 ? (
+          <table>
             <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Data de Nascimento</th>
-                    <th>Formação</th>
-                </tr>
+              <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Data de Nascimento</th>
+                <th>Formação</th>
+                <th>Ações</th>
+              </tr>
             </thead>
             <tbody>
-                {attributes.map(({id, nome, email, data_nascimento, formacao})=>{
-                    return (
-                        <tr key={id}>
-                        <td>{nome}</td>
-                        <td>{email}</td>
-                        <td>{dayjs(data_nascimento).format("DD/MM/YYYY")}</td>
-                        <td>{formacao}</td>
-                        </tr>
-                    )
-                })}
+              {attributes.map(
+                ({ id, nome, email, data_nascimento, formacao }) => {
+                  return (
+                    <tr key={id}>
+                      <td>{nome}</td>
+                      <td>{email}</td>
+                      <td>{dayjs(data_nascimento).format("DD/MM/YYYY")}</td>
+                      <td>{formacao}</td>
+                      <td className="flex gap-2 justify-center text-white">
+                        <button
+                          onClick={handleDelete}
+                          className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600"
+                        >
+                          Alterar
+                        </button>
+                        <button className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600">
+                          Excluir
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                }
+              )}
             </tbody>
-        </table>
-        :
-        <div>Nada</div>
-    }
+          </table>
+        ) : (
+          <div>Nada</div>
+        )}
       </div>
     </div>
   );

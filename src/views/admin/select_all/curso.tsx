@@ -8,6 +8,18 @@ import { FormCreateCurso } from "../../../components/forms/create/curso";
 export function ASelectCursoAll() {
   const [attributes, setAttributes] = useState([]);
 
+  const handleDelete = async (e) => {
+    const { id } = e.target;
+    await api
+      .delete(`/campus/${id}`)
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     api
       .get("/cursos/all")
@@ -55,6 +67,7 @@ export function ASelectCursoAll() {
                 <th>Duração</th>
                 <th>Grade</th>
                 <th>Campus</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -65,6 +78,17 @@ export function ASelectCursoAll() {
                     <td>{duracao}</td>
                     <td>{grade}</td>
                     <td>{campus.nome}</td>
+                    <td className="flex gap-2 justify-center text-white">
+                      <button
+                        onClick={handleDelete}
+                        className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600"
+                      >
+                        Alterar
+                      </button>
+                      <button className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600">
+                        Excluir
+                      </button>
+                    </td>
                   </tr>
                 );
               })}
