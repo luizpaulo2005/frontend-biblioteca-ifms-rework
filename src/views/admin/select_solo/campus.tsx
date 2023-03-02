@@ -69,8 +69,4 @@ export function ASelectCampusSolo() {
       </div>
     </div>
   );
-
-  function newFunction(): Campus | (() => Campus) {
-    return "";
-  }
 }
