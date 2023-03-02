@@ -79,7 +79,7 @@ export function ASelectDiscenteAll() {
               {attributes.map(({ id, nome, email, data_nascimento }) => {
                 return (
                   <tr key={id}>
-                    <td>{nome}</td>
+                    <td><a href={`/admin/discente/${id}`}>{nome}</a></td>
                     <td>{email}</td>
                     <td>{dayjs(data_nascimento).format("DD/MM/YYYY")}</td>
                     <td className="flex gap-2 justify-center text-white">
