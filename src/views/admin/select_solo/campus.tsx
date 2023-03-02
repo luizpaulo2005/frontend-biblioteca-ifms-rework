@@ -46,13 +46,13 @@ export function ASelectCampusSolo() {
       <HeaderUser />
       <div className="p-2">
         <div className="text-3xl mb-2">Campus {attributes.nome}</div>
-        <div className="bg-gray-700 rounded-md p-2">
+        <div className="border rounded-md p-2 dark:bg-gray-700 dark:border-none">
           <div>Cidade: {attributes.cidade}</div>
           <div>Estado: {attributes.estado}</div>
           <div>Email: {attributes.email}</div>
         </div>
         {attributes ? (
-          <div className=" mt-2 bg-gray-700 rounded-md p-2">
+          <div className="border mt-2 rounded-md p-2 dark:bg-gray-700 dark:border-none">
             {attributes.cursos.length > 0 ? (
               <div>
                 <div className="text-2xl mb-1">

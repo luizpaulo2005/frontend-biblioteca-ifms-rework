@@ -50,7 +50,7 @@ export function ASelectCursoSolo() {
       <HeaderUser />
       <div className="p-2">
         <div className="text-3xl mb-2">Curso {attributes.nome}</div>
-        <div className="bg-gray-700 rounded-md p-2 mb-2">
+        <div className="border rounded-md p-2 mb-2 dark:bg-gray-700 dark:border-none">
           <div>Grade: {attributes.grade}</div>
           <div>Duração: {attributes.duracao}</div>
           <div>
@@ -63,7 +63,7 @@ export function ASelectCursoSolo() {
           </div>
         </div>
         {attributes ? (
-          <div className="bg-gray-700 rounded-md p-2 mb-2">
+          <div className="border rounded-md p-2 mb-2 dark:bg-gray-700 dark:border-none">
             {attributes.pesquisas.length > 0 ? (
               <div>
                 <div className="text-2xl">Pesquisas realizadas neste curso: {attributes.pesquisas.length}</div>

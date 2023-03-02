@@ -21,7 +21,6 @@ import { ASelectCampusSolo } from './views/admin/select_solo/campus'
 import { ASelectCursoSolo } from './views/admin/select_solo/curso'
 import { ASelectDiscenteSolo } from './views/admin/select_solo/discente'
 import { ASelectDocenteSolo } from './views/admin/select_solo/docente'
-import { ASelectMatriculaSolo } from './views/admin/select_solo/matricula'
 import { ASelectPesquisaSolo } from './views/admin/select_solo/pesquisa'
 
 import { ASelectCampusAll } from './views/admin/select_all/campus'
@@ -61,7 +60,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       <Route path='/admin/curso/:id' element={<ASelectCursoSolo/>}/>
       <Route path='/admin/discente/:id' element={<ASelectDiscenteSolo/>}/>
       <Route path='/admin/docente/:id' element={<ASelectDocenteSolo/>}/>
-      <Route path='/admin/matricula/:id' element={<ASelectMatriculaSolo/>}/>
       <Route path='/admin/pesquisa/:id' element={<ASelectPesquisaSolo/>}/>
 
       <Route path='/login' element={<LoginScreen/>}/>

@@ -7,6 +7,19 @@ import { FormCreateMatricula } from "../../../components/forms/create/matricula"
 import { api } from "../../../utils/axios";
 import dayjs from "dayjs";
 
+interface Matriculas{
+  id: string;
+  data_inicio: string;
+  curso: {
+    id: string;
+    nome: string;
+  }
+  discente: {
+    id: string;
+    nome: string;
+  }
+}
+
 export function ASelectMatriculaAll() {
   const [attributes, setAttributes] = useState([]);
 
@@ -81,9 +94,15 @@ export function ASelectMatriculaAll() {
                 return (
                   <tr key={id}>
                     <td>{id}</td>
-                    <td>{discente.nome}</td>
+                    <td>
+                      <a href={`/admin/discente/${discente.id}`}>
+                        {discente.nome}
+                      </a>
+                    </td>
                     <td>{dayjs(data_inicio).format("DD/MM/YYYY")}</td>
-                    <td>{curso.nome}</td>
+                    <td>
+                      <a href={`/admin/curso/${curso.id}`}>{curso.nome}</a>
+                    </td>
                     <td className="flex gap-2 justify-center text-white">
                       <button
                         onClick={handleDelete}

@@ -73,6 +73,7 @@ export function ASelectPesquisaAll() {
                 <th>Docentes</th>
                 <th>Data de Apresentação</th>
                 <th>PDF</th>
+                <th>Ações</th>
               </tr>
             </thead>
             <tbody>
@@ -80,7 +81,7 @@ export function ASelectPesquisaAll() {
                 ({ id, titulo, discentes, docentes, data_apresentacao }) => {
                   return (
                     <tr key={id}>
-                      <td>{titulo}</td>
+                    <td><a href={`/admin/pesquisa/${id}`}>{titulo}</a></td>
                       {discentes.length > 0 ? (
                         <td>{discentes[0].discente.nome}</td>
                       ) : (
@@ -92,6 +93,7 @@ export function ASelectPesquisaAll() {
                         <td>Não cadastrado</td>
                       )}
                       <td>{dayjs(data_apresentacao).format("DD/MM/YYYY")}</td>
+                      <td><a download>Baixar</a></td>
                       <td className="flex gap-2 text-white">
                         <button className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600">
                           Alterar

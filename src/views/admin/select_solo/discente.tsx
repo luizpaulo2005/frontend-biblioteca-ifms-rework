@@ -48,7 +48,7 @@ export function ASelectDiscenteSolo() {
       <HeaderUser />
       <div className="p-2">
         <div className="text-3xl mb-1">Aluno - {attributes.nome}</div>
-        <div className="bg-gray-700 rounded-md p-2 mb-2">
+        <div className="border rounded-md p-2 mb-2 dark:bg-gray-700 dark:border-none">
           <div>Email: {attributes.email}</div>
           <div>
             Data de Nascimento:{" "}
@@ -60,7 +60,7 @@ export function ASelectDiscenteSolo() {
           <div>Matricula: {attributes.matricula_id}</div>
         </div>
         {attributes ? (
-          <div className="bg-gray-700 rounded-md p-2 mb-2">
+          <div className="border rounded-md p-2 mb-2 dark:bg-gray-700 dark:border-none">
             {attributes.pesquisas.length > 0 ? (
               <div>
                 <div className="text-2xl">Pesquisas realizadas por este aluno: {attributes.pesquisas.length}</div>

@@ -50,7 +50,7 @@ export function ASelectDocenteSolo() {
       <HeaderUser/>
       <div className="p-2">
         <div className="text-3xl mb-1">Professor - {attributes.nome}</div>
-        <div className="bg-gray-700 rounded-md p-2 mb-2">
+        <div className="border rounded-md p-2 mb-2 dark:bg-gray-700 dark:border-none">
           <div>E-mail: {attributes.email}</div>
           <div>CPF: {attributes.cpf}</div>
           <div>Formação: {attributes.formacao}</div>
@@ -58,7 +58,7 @@ export function ASelectDocenteSolo() {
           <div>SIAPE: {attributes.siape}</div>
         </div>
         {attributes ? (
-          <div className="bg-gray-700 rounded-md p-2 mb-2">
+          <div className="border rounded-md p-2 mb-2 dark:bg-gray-700 dark:border-none">
             {attributes.pesquisas.length > 0 ? (
               <div>
                 <div className="text-2xl">Pesquisas realizadas por este aluno: {attributes.pesquisas.length}</div>
