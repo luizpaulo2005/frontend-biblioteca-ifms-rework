@@ -78,7 +78,7 @@ export function ASelectCampusAll() {
             <tbody>
               {attributes.map(({ id, nome, cidade, estado }) => (
                 <tr key={id} className="text-center border">
-                  <td className="border">{nome}</td>
+                  <td className="border"><a href={`/admin/campus/${id}`}>{nome}</a></td>
                   <td className="border">{cidade}</td>
                   <td className="border">{estado}</td>
                   <td className="flex gap-2 justify-center text-white">
