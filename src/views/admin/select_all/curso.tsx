@@ -74,7 +74,7 @@ export function ASelectCursoAll() {
               {attributes.map(({ id, nome, duracao, grade, campus }) => {
                 return (
                   <tr key={id}>
-                    <td>{nome}</td>
+                    <td><a href={`/admin/curso/${id}`}>{nome}</a></td>
                     <td>{duracao}</td>
                     <td>{grade}</td>
                     <td>{campus.nome}</td>
