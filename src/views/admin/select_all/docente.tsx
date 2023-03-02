@@ -79,7 +79,7 @@ export function ASelectDocenteAll() {
                 ({ id, nome, email, data_nascimento, formacao }) => {
                   return (
                     <tr key={id}>
-                      <td>{nome}</td>
+                      <td><a href={`/admin/docente/${id}`}>{nome}</a></td>
                       <td>{email}</td>
                       <td>{dayjs(data_nascimento).format("DD/MM/YYYY")}</td>
                       <td>{formacao}</td>
