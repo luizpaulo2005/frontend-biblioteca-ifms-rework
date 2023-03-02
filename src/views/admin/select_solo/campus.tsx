@@ -40,7 +40,7 @@ export function ASelectCampusSolo() {
       )}
       <HeaderUser />
       <div className="p-2">
-        <div className="text-3xl">Campus {attributes.nome}</div>
+        <div className="text-3xl mb-2">Campus {attributes.nome}</div>
         <div className="bg-gray-700 rounded-md p-2">
           <div>Cidade - {attributes.cidade}</div>
           <div>Estado - {attributes.estado}</div>
@@ -50,13 +50,13 @@ export function ASelectCampusSolo() {
           <div className=" mt-2 bg-gray-700 rounded-md p-2">
             {attributes.cursos.length > 0 ? (
               <div>
-                <div className="text-2xl mb-1">Cursos deste campus:</div> 
+                <div className="text-2xl mb-1">Cursos inseridos neste campus: {attributes.cursos.length}</div> 
                 {attributes.cursos.map(({ id, nome }) => {
                   return <div key={id} className="mb-1"><a href={`/admin/curso/${id}`}>{nome}</a></div>;
                 })}
               </div>
             ) : (
-              <div>Sem cursos</div>
+              <div>Atualmente esse campus não possui cursos cadastrados</div>
             )}
           </div>
         ) : (
