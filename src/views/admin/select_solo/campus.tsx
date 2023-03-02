@@ -10,7 +10,11 @@ interface Campus {
   cidade: string;
   estado: string;
   email: string;
-  cursos: string[];
+  cursos: [
+    {
+      id: string, nome: string
+    }
+  ];
 }
 
 export function ASelectCampusSolo() {
@@ -65,4 +69,8 @@ export function ASelectCampusSolo() {
       </div>
     </div>
   );
+
+  function newFunction(): Campus | (() => Campus) {
+    return "";
+  }
 }
