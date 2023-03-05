@@ -1,15 +1,26 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { HeaderUser } from "../../../components/header/user";
 import { api } from "../../../utils/axios";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Plus, X } from "phosphor-react";
 import { FormCreateCurso } from "../../../components/forms/create/curso";
 
+interface Cursos{
+  id: string;
+  nome: string;
+  duracao: string;
+  grade: string;
+  campus: {
+    id: string;
+    nome: string;
+  }
+}[]
+
 export function ASelectCursoAll() {
   const [attributes, setAttributes] = useState([]);
 
-  const handleDelete = async (e) => {
-    const { id } = e.target;
+  const handleDelete = async (e: FormEvent) => {
+    const { id } = e.target as HTMLFormElement
     await api
       .delete(`/campus/${id}`)
       .then(() => {

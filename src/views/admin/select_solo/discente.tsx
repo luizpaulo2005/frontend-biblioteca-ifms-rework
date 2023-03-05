@@ -21,7 +21,7 @@ interface Discente {
 }
 
 export function ASelectDiscenteSolo() {
-  const [attributes, setAttributes] = useState<Discente>("");
+  const [attributes, setAttributes] = useState<Discente>();
   const { id } = useParams();
 
   useEffect(() => {
@@ -47,17 +47,17 @@ export function ASelectDiscenteSolo() {
       )}
       <HeaderUser />
       <div className="p-2">
-        <div className="text-3xl mb-1">Aluno - {attributes.nome}</div>
+        <div className="text-3xl mb-1">Aluno - {attributes?.nome}</div>
         <div className="border rounded-md p-2 mb-2 dark:bg-gray-700 dark:border-none">
-          <div>Email: {attributes.email}</div>
+          <div>Email: {attributes?.email}</div>
           <div>
             Data de Nascimento:{" "}
-            {dayjs(attributes.data_nascimento).format("DD/MM/YYYY")}
+            {dayjs(attributes?.data_nascimento).format("DD/MM/YYYY")}
           </div>
           <div>
-            CPF: {attributes.cpf != "" ? attributes.cpf : <>Não cadastrado</>}
+            CPF: {attributes?.cpf != "" ? attributes?.cpf : <>Não cadastrado</>}
           </div>
-          <div>Matricula: {attributes.matricula_id}</div>
+          <div>Matricula: {attributes?.matricula_id}</div>
         </div>
         {attributes ? (
           <div className="border rounded-md p-2 mb-2 dark:bg-gray-700 dark:border-none">

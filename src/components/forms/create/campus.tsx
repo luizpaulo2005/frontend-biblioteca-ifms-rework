@@ -7,23 +7,23 @@ export function FormCreateCampus() {
   const [estado, setEstado] = useState("");
   const [email, setEmail] = useState("");
 
-  const handleInputNomeChange = (e) => {
-    const { value } = e.target;
+  const handleInputNomeChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setNome(value);
   };
 
-  const handleInputCidadeChange = (e) => {
-    const { value } = e.target;
+  const handleInputCidadeChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setCidade(value);
   };
 
-  const handleInputEstadoChange = (e) => {
-    const { value } = e.target;
+  const handleInputEstadoChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setEstado(value);
   };
 
-  const handleInputEmailChange = (e) => {
-    const { value } = e.target;
+  const handleInputEmailChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setEmail(value);
   };
 
@@ -35,7 +35,7 @@ export function FormCreateCampus() {
       .post("/campus", data)
       .then((res) => {
         console.log(res.data);
-        window.location.reload()
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);

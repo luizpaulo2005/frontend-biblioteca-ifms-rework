@@ -22,7 +22,7 @@ interface Curso {
 }
 
 export function ASelectCursoSolo() {
-  const [attributes, setAttributes] = useState<Curso>("");
+  const [attributes, setAttributes] = useState<Curso>();
 
   const { id } = useParams();
 
@@ -49,10 +49,10 @@ export function ASelectCursoSolo() {
       )}
       <HeaderUser />
       <div className="p-2">
-        <div className="text-3xl mb-2">Curso {attributes.nome}</div>
+        <div className="text-3xl mb-2">Curso {attributes?.nome}</div>
         <div className="border rounded-md p-2 mb-2 dark:bg-gray-700 dark:border-none">
-          <div>Grade: {attributes.grade}</div>
-          <div>Duração: {attributes.duracao}</div>
+          <div>Grade: {attributes?.grade}</div>
+          <div>Duração: {attributes?.duracao}</div>
           <div>
             Campus:{" "}
             {attributes ? (

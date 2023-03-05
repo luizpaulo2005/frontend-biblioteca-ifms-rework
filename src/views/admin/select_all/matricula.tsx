@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { HeaderUser } from "../../../components/header/user";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -23,8 +23,8 @@ interface Matriculas{
 export function ASelectMatriculaAll() {
   const [attributes, setAttributes] = useState([]);
 
-  const handleDelete = async (e) => {
-    const { id } = e.target;
+  const handleDelete = async (e: FormEvent) => {
+    const { id } = e.target as HTMLButtonElement
     await api
       .delete(`/campus/${id}`)
       .then(() => {

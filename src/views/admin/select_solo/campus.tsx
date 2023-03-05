@@ -19,7 +19,7 @@ interface Campus {
 }
 
 export function ASelectCampusSolo() {
-  const [attributes, setAttributes] = useState<Campus>("");
+  const [attributes, setAttributes] = useState<Campus>();
   const { id } = useParams();
 
   useEffect(() => {
@@ -45,11 +45,11 @@ export function ASelectCampusSolo() {
       )}
       <HeaderUser />
       <div className="p-2">
-        <div className="text-3xl mb-2">Campus {attributes.nome}</div>
+        <div className="text-3xl mb-2">Campus {attributes?.nome}</div>
         <div className="border rounded-md p-2 dark:bg-gray-700 dark:border-none">
-          <div>Cidade: {attributes.cidade}</div>
-          <div>Estado: {attributes.estado}</div>
-          <div>Email: {attributes.email}</div>
+          <div>Cidade: {attributes?.cidade}</div>
+          <div>Estado: {attributes?.estado}</div>
+          <div>Email: {attributes?.email}</div>
         </div>
         {attributes ? (
           <div className="border mt-2 rounded-md p-2 dark:bg-gray-700 dark:border-none">

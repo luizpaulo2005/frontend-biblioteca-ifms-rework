@@ -27,7 +27,7 @@ interface Pesquisa {
 
 export function ASelectPesquisaSolo() {
   const { id } = useParams();
-  const [attributes, setAttributes] = useState<Pesquisa>("");
+  const [attributes, setAttributes] = useState<Pesquisa>();
 
   useEffect(() => {
     api.get(`/pesquisa/${id}`).then((res) => {
@@ -49,10 +49,10 @@ export function ASelectPesquisaSolo() {
       )}
       <HeaderUser/>
       <div className="p-2">
-        <div className="text-3xl mb-1">Pesquisa - {attributes.titulo}</div>
+        <div className="text-3xl mb-1">Pesquisa - {attributes?.titulo}</div>
         <div className="border rounded-md p-2 dark:bg-gray-700 dark:border-none">
-            <div>Resumo: {attributes.resumo}</div>
-            <div>Palavras-Chave: {attributes.palavras_chave}</div>
+            <div>Resumo: {attributes?.resumo}</div>
+            <div>Palavras-Chave: {attributes?.palavras_chave}</div>
             <div>
                 Discentes: {attributes ? <>{attributes.discentes.length > 0 ? <>{attributes.discentes.map(({discente})=>{
                     return (
@@ -70,7 +70,7 @@ export function ASelectPesquisaSolo() {
                     })}</> : <>Não Cadastrado</>}</> : <></>
                 }
             </div>
-            <div>Data de Apresentação: {dayjs(attributes.data_apresentacao).format("DD/MM/YYYY")}</div>
+            <div>Data de Apresentação: {dayjs(attributes?.data_apresentacao).format("DD/MM/YYYY")}</div>
         </div>
       </div>
     </div>

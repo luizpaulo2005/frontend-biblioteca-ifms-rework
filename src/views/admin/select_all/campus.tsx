@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { HeaderUser } from "../../../components/header/user";
 import { api } from "../../../utils/axios";
 import * as Dialog from "@radix-ui/react-dialog";
@@ -9,8 +9,8 @@ import { Helmet } from "react-helmet";
 export function ASelectCampusAll() {
   const [attributes, setAttributes] = useState([]);
 
-  const handleDelete = async (e) => {
-    const { id } = e.target;
+  const handleDelete = async (e: FormEvent) => {
+    const { id } = e.target as HTMLButtonElement
     await api
       .delete(`/campus/${id}`)
       .then(() => {

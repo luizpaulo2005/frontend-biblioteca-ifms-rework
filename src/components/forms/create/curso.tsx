@@ -9,23 +9,23 @@ export function FormCreateCurso() {
   const [duracao, setDuracao] = useState("");
   const [campus_id, setCampusId] = useState("");
 
-  const handleInputNomeChange = (e) => {
-    const { value } = e.target;
+  const handleInputNomeChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setNome(value);
   };
 
-  const handleInputGradeChange = (e) => {
-    const { value } = e.target;
+  const handleInputGradeChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setGrade(Math.floor(value));
   };
 
-  const handleInputDuracaoChange = (e) => {
-    const { value } = e.target;
+  const handleInputDuracaoChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setDuracao(value);
   };
 
-  const handleInputCampusChange = (e) => {
-    const { value } = e.target;
+  const handleInputCampusChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setCampusId(value);
   };
 

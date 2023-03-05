@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { api } from "../../../utils/axios";
 import { Helmet } from "react-helmet";
 import { HeaderUser } from "../../../components/header/user";
@@ -10,8 +10,8 @@ import dayjs from "dayjs";
 export function ASelectDocenteAll() {
   const [attributes, setAttributes] = useState([]);
 
-  const handleDelete = async (e) => {
-    const { id } = e.target;
+  const handleDelete = async (e: FormEvent) => {
+    const { id } = e.target as HTMLButtonElement
     await api
       .delete(`/campus/${id}`)
       .then(() => {

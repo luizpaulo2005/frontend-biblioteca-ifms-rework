@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { api } from "../../../utils/axios";
 
 export function FormCreateDiscente() {
@@ -10,35 +10,35 @@ export function FormCreateDiscente() {
   const [data_nascimento, setData_nascimento] = useState("");
   const [cpf, setCpf] = useState("");
 
-  const handleInputNomeChange = (e) => {
-    const { value } = e.target;
+  const handleInputNomeChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setNome(value);
   };
 
-  const handleInputMatriculaChange = (e) => {
-    const { value } = e.target;
+  const handleInputMatriculaChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setMatriculaID(value);
   };
 
-  const handleInputEmailChange = (e) => {
-    const { value } = e.target;
+  const handleInputEmailChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setEmail(value);
   };
 
-  const handleInputDataChange = (e) => {
-    const { value } = e.target;
+  const handleInputDataChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setData_nascimento(value);
   };
 
-  const handleInputCPFChange = (e) => {
-    const { value } = e.target;
+  const handleInputCPFChange = (e: FormEvent) => {
+    const { value } = e.target as HTMLFormElement;
     setCpf(value);
   };
 
   const data = { nome, matricula_id, email, data_nascimento, cpf };
   console.log(data);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     await api
       .post("discente", data)

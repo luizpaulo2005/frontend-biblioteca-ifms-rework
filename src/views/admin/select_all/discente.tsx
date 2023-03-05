@@ -3,15 +3,15 @@ import { Helmet } from "react-helmet";
 import * as Dialog from "@radix-ui/react-dialog";
 import { FormCreateDiscente } from "../../../components/forms/create/discente";
 import { Plus, X } from "phosphor-react";
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { api } from "../../../utils/axios";
 import dayjs from "dayjs";
 
 export function ASelectDiscenteAll() {
   const [attributes, setAttributes] = useState([]);
 
-  const handleDelete = async (e) => {
-    const { id } = e.target;
+  const handleDelete = async (e: FormEvent) => {
+    const { id } = e.target as HTMLButtonElement
     await api
       .delete(`/campus/${id}`)
       .then(() => {
