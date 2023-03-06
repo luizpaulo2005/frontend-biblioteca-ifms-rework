@@ -13,7 +13,7 @@ export function ASelectDiscenteAll() {
   const handleDelete = async (e: FormEvent) => {
     const { id } = e.target as HTMLElement;
     await api
-      .delete(`/campus/${id}`)
+      .delete(`/discente/${id}`)
       .then(() => {
         window.location.reload();
       })

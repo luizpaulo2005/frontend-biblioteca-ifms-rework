@@ -26,7 +26,7 @@ export function ASelectMatriculaAll() {
   const handleDelete = async (e: FormEvent) => {
     const { id } = e.target as HTMLElement;
     await api
-      .delete(`/campus/${id}`)
+      .delete(`/matricula/${id}`)
       .then(() => {
         window.location.reload();
       })

@@ -13,7 +13,7 @@ export function ASelectPesquisaAll() {
   const handleDelete = async (e: FormEvent) => {
     const { id } = e.target as HTMLElement;
     await api
-      .delete(`/campus/${id}`)
+      .delete(`/pesquisa/${id}`)
       .then(() => {
         window.location.reload();
       })
