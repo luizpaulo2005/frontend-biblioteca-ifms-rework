@@ -10,7 +10,7 @@ export function ASelectCampusAll() {
   const [attributes, setAttributes] = useState([]);
 
   const handleDelete = async (e: FormEvent) => {
-    const { id } = e.target as HTMLButtonElement
+    const { id } = e.target as HTMLElement;
     await api
       .delete(`/campus/${id}`)
       .then(() => {
@@ -78,17 +78,20 @@ export function ASelectCampusAll() {
             <tbody>
               {attributes.map(({ id, nome, cidade, estado }) => (
                 <tr key={id} className="text-center border">
-                  <td className="border"><a href={`/admin/campus/${id}`}>{nome}</a></td>
+                  <td className="border">
+                    <a href={`/admin/campus/${id}`}>{nome}</a>
+                  </td>
                   <td className="border">{cidade}</td>
                   <td className="border">{estado}</td>
                   <td className="flex gap-2 justify-center text-white">
-                    <button
-                      onClick={handleDelete}
-                      className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600"
-                    >
+                    <button className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600">
                       Alterar
                     </button>
-                    <button className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600">
+                    <button
+                      onClick={handleDelete}
+                      id={id}
+                      className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600"
+                    >
                       Excluir
                     </button>
                   </td>

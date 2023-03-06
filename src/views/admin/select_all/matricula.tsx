@@ -7,24 +7,24 @@ import { FormCreateMatricula } from "../../../components/forms/create/matricula"
 import { api } from "../../../utils/axios";
 import dayjs from "dayjs";
 
-interface Matriculas{
+interface Matriculas {
   id: string;
   data_inicio: string;
   curso: {
     id: string;
     nome: string;
-  }
+  };
   discente: {
     id: string;
     nome: string;
-  }
+  };
 }
 
 export function ASelectMatriculaAll() {
   const [attributes, setAttributes] = useState([]);
 
   const handleDelete = async (e: FormEvent) => {
-    const { id } = e.target as HTMLButtonElement
+    const { id } = e.target as HTMLElement;
     await api
       .delete(`/campus/${id}`)
       .then(() => {
@@ -104,13 +104,14 @@ export function ASelectMatriculaAll() {
                       <a href={`/admin/curso/${curso.id}`}>{curso.nome}</a>
                     </td>
                     <td className="flex gap-2 justify-center text-white">
-                      <button
-                        onClick={handleDelete}
-                        className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600"
-                      >
+                      <button className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600">
                         Alterar
                       </button>
-                      <button className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600">
+                      <button
+                        onClick={handleDelete}
+                        id={id}
+                        className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600"
+                      >
                         Excluir
                       </button>
                     </td>

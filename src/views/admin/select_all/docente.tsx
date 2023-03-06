@@ -11,7 +11,7 @@ export function ASelectDocenteAll() {
   const [attributes, setAttributes] = useState([]);
 
   const handleDelete = async (e: FormEvent) => {
-    const { id } = e.target as HTMLButtonElement
+    const { id } = e.target as HTMLElement;
     await api
       .delete(`/campus/${id}`)
       .then(() => {
@@ -79,18 +79,21 @@ export function ASelectDocenteAll() {
                 ({ id, nome, email, data_nascimento, formacao }) => {
                   return (
                     <tr key={id}>
-                      <td><a href={`/admin/docente/${id}`}>{nome}</a></td>
+                      <td>
+                        <a href={`/admin/docente/${id}`}>{nome}</a>
+                      </td>
                       <td>{email}</td>
                       <td>{dayjs(data_nascimento).format("DD/MM/YYYY")}</td>
                       <td>{formacao}</td>
                       <td className="flex gap-2 justify-center text-white">
-                        <button
-                          onClick={handleDelete}
-                          className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600"
-                        >
+                        <button className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600">
                           Alterar
                         </button>
-                        <button className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600">
+                        <button
+                          onClick={handleDelete}
+                          id={id}
+                          className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600"
+                        >
                           Excluir
                         </button>
                       </td>

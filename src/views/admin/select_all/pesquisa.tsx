@@ -11,7 +11,7 @@ export function ASelectPesquisaAll() {
   const [attributes, setAttributes] = useState([]);
 
   const handleDelete = async (e: FormEvent) => {
-    const { id } = e.target as HTMLButtonElement
+    const { id } = e.target as HTMLElement;
     await api
       .delete(`/campus/${id}`)
       .then(() => {
@@ -81,7 +81,9 @@ export function ASelectPesquisaAll() {
                 ({ id, titulo, discentes, docentes, data_apresentacao }) => {
                   return (
                     <tr key={id}>
-                    <td><a href={`/admin/pesquisa/${id}`}>{titulo}</a></td>
+                      <td>
+                        <a href={`/admin/pesquisa/${id}`}>{titulo}</a>
+                      </td>
                       {discentes.length > 0 ? (
                         <td>{discentes[0].discente.nome}</td>
                       ) : (
@@ -93,13 +95,16 @@ export function ASelectPesquisaAll() {
                         <td>Não cadastrado</td>
                       )}
                       <td>{dayjs(data_apresentacao).format("DD/MM/YYYY")}</td>
-                      <td><a download>Baixar</a></td>
+                      <td>
+                        <a download>Baixar</a>
+                      </td>
                       <td className="flex gap-2 text-white">
                         <button className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600">
                           Alterar
                         </button>
                         <button
                           onClick={handleDelete}
+                          id={id}
                           className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600"
                         >
                           Excluir
