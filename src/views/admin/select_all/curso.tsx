@@ -4,6 +4,7 @@ import { api } from "../../../utils/axios";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Plus, X } from "phosphor-react";
 import { FormCreateCurso } from "../../../components/forms/create/curso";
+import { Helmet } from "react-helmet";
 
 interface Cursos {
   id: string;
@@ -45,6 +46,9 @@ export function ASelectCursoAll() {
   }, []);
   return (
     <div className="w-screen min-h-screen p-2 dark:text-white">
+      <Helmet>
+        <title>Admin - Lista de Cursos</title>
+      </Helmet>
       <HeaderUser />
       <div>
         <div className="flex justify-between p-3">

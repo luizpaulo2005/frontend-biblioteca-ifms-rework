@@ -79,8 +79,8 @@ export function ASelectMatriculaAll() {
           </Dialog.Root>
         </div>
         {attributes.length > 0 ? (
-          <table>
-            <thead>
+          <table className="w-full">
+            <thead className="bg-green-500 text-white dark:bg-green-800">
               <tr>
                 <th>ID</th>
                 <th>Pertence a</th>
@@ -92,25 +92,25 @@ export function ASelectMatriculaAll() {
             <tbody>
               {attributes.map(({ id, data_inicio, discente, curso }) => {
                 return (
-                  <tr key={id}>
-                    <td>{id}</td>
-                    <td>
+                  <tr key={id} className="text-center border">
+                    <td className="border">{id}</td>
+                    <td className="border">
                       <a href={`/admin/discente/${discente.id}`}>
                         {discente.nome}
                       </a>
                     </td>
-                    <td>{dayjs(data_inicio).format("DD/MM/YYYY")}</td>
-                    <td>
+                    <td className="border">{dayjs(data_inicio).format("DD/MM/YYYY")}</td>
+                    <td className="border">
                       <a href={`/admin/curso/${curso.id}`}>{curso.nome}</a>
                     </td>
-                    <td className="flex gap-2 justify-center text-white">
-                      <button className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600">
+                    <td className="flex justify-center items-center gap-2 py-1 text-white">
+                      <button className="px-2 py-1 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600">
                         Alterar
                       </button>
                       <button
                         onClick={handleDelete}
                         id={id}
-                        className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600"
+                        className="px-2 py-1 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600"
                       >
                         Excluir
                       </button>

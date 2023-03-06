@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { api } from "../../../utils/axios";
 import { Helmet } from "react-helmet";
 import { HeaderUser } from "../../../components/header/user";
-import { Plus, X } from "phosphor-react";
+import { FileArrowDown, Plus, X } from "phosphor-react";
 import { FormCreatePesquisa } from "../../../components/forms/create/pesquisa";
 import * as Dialog from "@radix-ui/react-dialog";
 import dayjs from "dayjs";
@@ -65,8 +65,8 @@ export function ASelectPesquisaAll() {
           </Dialog.Root>
         </div>
         {attributes.length > 0 ? (
-          <table>
-            <thead>
+          <table className="w-full">
+            <thead className="bg-green-500 text-white dark:bg-green-800">
               <tr>
                 <th>Nome</th>
                 <th>Discentes</th>
@@ -80,32 +80,32 @@ export function ASelectPesquisaAll() {
               {attributes.map(
                 ({ id, titulo, discentes, docentes, data_apresentacao }) => {
                   return (
-                    <tr key={id}>
-                      <td>
+                    <tr key={id} className="text-center border">
+                      <td className="border">
                         <a href={`/admin/pesquisa/${id}`}>{titulo}</a>
                       </td>
                       {discentes.length > 0 ? (
-                        <td>{discentes[0].discente.nome}</td>
+                        <td className="border"><a href={`/user/discente/${discentes[0].discente.id}`}>{discentes[0].discente.nome}</a></td>
                       ) : (
-                        <td>Não cadastrado</td>
+                        <td className="border">Não cadastrado</td>
                       )}
                       {docentes.length > 0 ? (
-                        <td>{docentes[0].docente.nome}</td>
+                        <td className="border"><a href={`/user/docente/${docentes[0].docente.id}`}>{docentes[0].docente.nome}</a></td>
                       ) : (
-                        <td>Não cadastrado</td>
+                        <td className="border">Não cadastrado</td>
                       )}
-                      <td>{dayjs(data_apresentacao).format("DD/MM/YYYY")}</td>
-                      <td>
-                        <a download>Baixar</a>
+                      <td className="border">{dayjs(data_apresentacao).format("DD/MM/YYYY")}</td>
+                      <td className="border">
+                      <a download className="flex justify-center items-center"><FileArrowDown size={20} className="text-green-400 transition-colors hover:text-blue-700"/></a>
                       </td>
-                      <td className="flex gap-2 text-white">
-                        <button className="p-2 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600">
+                      <td className="flex justify-center items-center gap-2 py-1 text-white">
+                        <button className="px-2 py-1 rounded-md bg-blue-600 hover:bg-blue-400 transition-colors dark:bg-blue-800 dark:hover:bg-blue-600">
                           Alterar
                         </button>
                         <button
                           onClick={handleDelete}
                           id={id}
-                          className="p-2 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600"
+                          className="px-2 py-1 rounded-md bg-red-600 hover:bg-red-400 transition-colors dark:bg-red-800 dark:hover:bg-red-600"
                         >
                           Excluir
                         </button>
